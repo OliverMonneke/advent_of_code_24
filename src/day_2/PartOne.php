@@ -95,4 +95,4 @@ foreach ($lines as $line) {
     $dayTwo->addSequence(explode(' ', $line));
 }
 
-echo $dayTwo->countSafeSequences();
+# echo $dayTwo->countSafeSequences();

@@ -35,4 +35,4 @@ class PartTwo
 }
 
 $dayTwo = new PartTwo();
-echo $dayTwo->findSimilaritySum();
+# echo $dayTwo->findSimilaritySum();

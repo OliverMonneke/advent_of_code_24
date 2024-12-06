@@ -37,4 +37,4 @@ class PartOne
 }
 
 $dayOne = new PartOne();
-echo $dayOne->calculateDifferenceSum();
+# echo $dayOne->calculateDifferenceSum();
