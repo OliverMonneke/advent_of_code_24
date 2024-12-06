@@ -10,6 +10,6 @@ class PartOneTest extends TestCase
     public function testCalculateDifferenceSum()
     {
         $dayOne = new PartOne();
-        $this->assertEquals(2367773, $dayOne->calculateDifferenceSum());
+        $this->assertEquals(2367773, $dayOne->calculateSumOfDifferences());
     }
 }

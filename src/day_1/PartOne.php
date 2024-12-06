@@ -4,37 +4,42 @@ namespace App\day_1;
 
 class PartOne
 {
-    private array $left = [];
-    private array $right = [];
-
+    private array $leftValues = [];
+    private array $rightValues = [];
     private const string INPUT_FILE_PATH = __DIR__ . '/input.txt';
+    private const int DELIMITER_SPACES = 3;
 
-    public function calculateDifferenceSum(): int
+    public function calculateSumOfDifferences(): int
     {
-        $this->parseInputFile();
-        sort($this->left);
-        sort($this->right);
+        $this->loadInputData();
+        sort($this->leftValues);
+        sort($this->rightValues);
 
-        $differences = array_map(fn($left, $right) => abs($left - $right), $this->left, $this->right);
-
-        return array_sum($differences);
+        return array_sum($this->calculateDifferences());
     }
 
-    private function parseInputFile(): void
+    private function loadInputData(): void
     {
-        $input = file_get_contents(self::INPUT_FILE_PATH);
-        $lines = explode("\n", $input);
-
+        $lines = $this->readInputFile();
         foreach ($lines as $line) {
             if (empty($line)) {
                 continue;
             }
-            list($leftValue, $rightValue) = explode('   ', $line);
-            $this->left[] = $leftValue;
-            $this->right[] = $rightValue;
+            [$leftValue, $rightValue] = explode(str_repeat(' ', self::DELIMITER_SPACES), $line);
+            $this->leftValues[] = (int)$leftValue;
+            $this->rightValues[] = (int)$rightValue;
         }
     }
-}
 
-$dayOne = new PartOne();
+    private function readInputFile(): array
+    {
+        $input = file_get_contents(self::INPUT_FILE_PATH);
+        return explode("\n", trim($input));
+    }
+
+    private function calculateDifferences(): array
+    {
+        return array_map(fn($left, $right) => abs($left - $right), $this->leftValues, $this->rightValues);
+    }
+}
 # echo $dayOne->calculateDifferenceSum();
