@@ -26,7 +26,6 @@ class PartTwo
             if (in_array($leftItem, $right)) {
                 # count how often does leftItem appear in the right array
                 $rightCount = array_count_values($right);
-                echo $rightCount[$leftItem] . PHP_EOL;
                 $sum += ($rightCount[$leftItem] * $leftItem);
             }
         }
