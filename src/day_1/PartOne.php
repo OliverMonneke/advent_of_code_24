@@ -1,13 +1,13 @@
 <?php
 
-namespace App\day_1\part_1;
+namespace App\day_1;
 
-class DayOne
+class PartOne
 {
     private array $left = [];
     private array $right = [];
 
-    public function compare(): int
+    public function calculateDifferenceSum(): int
     {
         $input = file_get_contents(__DIR__ . '/input.txt');
         $lines = explode("\n", $input);
@@ -34,5 +34,5 @@ class DayOne
     }
 }
 
-$dayOne = new DayOne();
-echo $dayOne->compare();
+$dayOne = new PartOne();
+echo $dayOne->calculateDifferenceSum();
