@@ -120,9 +120,14 @@ class PartTwo
 
         return $sequences;
     }
+
+    public function getSequence(): array
+    {
+        return $this->sequence;
+    }
 }
 
-$dayTwo = new PartOne();
+$dayTwo = new PartTwo();
 $file = file_get_contents(__DIR__ . '/input.txt');
 $lines = explode("\n", $file);
 foreach ($lines as $line) {
@@ -133,4 +138,4 @@ foreach ($lines as $line) {
     $dayTwo->addSequence(explode(' ', $line));
 }
 
-echo $dayTwo->countSafeSequences().PHP_EOL;
+echo PHP_EOL."result: ".$dayTwo->countSafeSequences().PHP_EOL;
