@@ -4,78 +4,78 @@ namespace App\day_2;
 
 class PartOne
 {
-    private array $sequence = [];
+    /**
+     * @var array
+     */
+    private array $sequences = [];
 
+    /**
+     * @param array $sequence
+     * @return void
+     */
     public function addSequence(array $sequence): void
     {
-        $this->sequence[] = $sequence;
+        $this->sequences[] = $sequence;
     }
 
+    /**
+     * @param array $sequence
+     * @return bool
+     */
     public function isSafe(array $sequence): bool
     {
-        $returnValue = true;
-
-        for($i = 0; $i < count($sequence); $i++)
-        {
-            $current = $sequence[$i];
-            $previous = $sequence[$i - 1] ?? null;
-
-            if ($previous === null)
-            {
-                continue;
-            }
-
-            if (abs($current - $previous) > 3)
-            {
-                $returnValue = false;
-            }
+        if (!$this->hasSafeDifference($sequence)) {
+            return false;
         }
 
-        if ($returnValue)
-        {
-            reset ($this->sequence);
-
-            $decreasing = false;
-            $increasing = false;
-
-            for($i = 0; $i < count($sequence); $i++)
-            {
-                $current = $sequence[$i];
-                $previous = $sequence[$i - 1] ?? null;
-
-                if ($previous === null)
-                {
-                    continue;
-                }
-
-                if ($current < $previous)
-                {
-                    $decreasing = true;
-                }
-                elseif ($current > $previous)
-                {
-                    $increasing = true;
-                } else {
-                    $decreasing = false;
-                    $increasing = false;
-                    break;
-                }
-            }
-
-            $returnValue = $decreasing !== $increasing;
-        }
-
-        return $returnValue;
+        return $this->isConsistentlyIncreasingOrDecreasing($sequence);
     }
 
+    /**
+     * @param array $sequence
+     * @return bool
+     */
+    private function hasSafeDifference(array $sequence): bool
+    {
+        for ($i = 1; $i < count($sequence); $i++) {
+            if (abs($sequence[$i] - $sequence[$i - 1]) > 3) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param array $sequence
+     * @return bool
+     */
+    private function isConsistentlyIncreasingOrDecreasing(array $sequence): bool
+    {
+        $isDecreasing = false;
+        $isIncreasing = false;
+
+        for ($i = 1; $i < count($sequence); $i++) {
+            if ($sequence[$i] < $sequence[$i - 1]) {
+                $isDecreasing = true;
+            } elseif ($sequence[$i] > $sequence[$i - 1]) {
+                $isIncreasing = true;
+            } else {
+                return false; // No change means neither increasing nor decreasing
+            }
+        }
+
+        return $isDecreasing !== $isIncreasing;
+    }
+
+    /**
+     * @return int
+     */
     public function countSafeSequences(): int
     {
         $count = 0;
 
-        foreach ($this->sequence as $sequence)
-        {
-            if ($this->isSafe($sequence))
-            {
+        foreach ($this->sequences as $sequence) {
+            if ($this->isSafe($sequence)) {
                 $count++;
             }
         }
@@ -91,7 +91,6 @@ foreach ($lines as $line) {
     if (empty($line)) {
         continue;
     }
-
     $dayTwo->addSequence(explode(' ', $line));
 }
 
