@@ -1,6 +1,6 @@
 <?php
 
-namespace App\day_3;
+namespace App\2024\day_4 App\2024\day_3;
 
 class PartOne
 {
@@ -34,7 +34,7 @@ class PartOne
     }
 }
 
-$dayOne = new PartOne();
+$dayOne = new \day_4\PartOne();
 
 $file = file_get_contents(__DIR__ . '/input.txt');
 $lines = explode("\n", $file);

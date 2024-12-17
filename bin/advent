@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// this script accepts 2 arguments
+// 1. the year of the challenge (default is the current year)
+// 2. the day of the challenge (default is the current day)
+// example: bin/advent 2024 3
+
+$year = $argv[1] ?? date('Y');
+$day = $argv[2] ?? date('j');
+
+if (file_exists(__DIR__ . "/../src/year_{$year}/day_{$day}/Advent.php")) {
+    $advent = new ("\\App\\year_{$year}\\day_{$day}\\Advent")();
+    echo $advent->firstPart().PHP_EOL;
+    echo $advent->secondPart().PHP_EOL;
+} else {
+    echo "Day {$day} of year {$year} not found\n";
+    exit(1);
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\day_3;
+namespace App\2024\day_3 App\2024\day_3;
 
 class PartTwo
 {
@@ -43,7 +43,7 @@ class PartTwo
 
 $file = file_get_contents(__DIR__ . '/input.txt');
 
-$dayThree = new PartTwo();
+$dayThree = new \day_3\PartTwo();
 
 $dayThree->findMultiplesFromText($file);
 

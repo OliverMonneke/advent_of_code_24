@@ -1,8 +1,8 @@
 <?php
 
-namespace App\day_2;
+namespace App\year_2024\day_2;
 
-class PartOne
+class Advent
 {
     /**
      * @var array
@@ -84,7 +84,7 @@ class PartOne
     }
 }
 
-$dayTwo = new PartOne();
+$dayTwo = new \day_4\PartOne();
 $file = file_get_contents(__DIR__ . '/input.txt');
 $lines = explode("\n", $file);
 foreach ($lines as $line) {
